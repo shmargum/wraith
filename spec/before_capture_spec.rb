@@ -31,7 +31,9 @@ describe Wraith do
 
   before(:each) do
     Wraith::FolderManager.new(config_name).clear_shots_folder
+    Wraith::FolderManager.new(config_chrome).clear_shots_folder
     Dir.mkdir("shots/test")
+    Dir.mkdir("shots_chrome/test")
   end
 
   describe "different ways of determining the before_capture file" do
