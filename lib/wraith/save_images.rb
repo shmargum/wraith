@@ -128,7 +128,8 @@ class Wraith::SaveImages
       driver.manage.window.resize_to(width, height || 1500)
       driver.navigate.to url
       if global_before_capture
-      puts File.read(global_before_capture)
+          el = driver.find_element(:css, 'body')
+          puts el.attribute('innerHTML')
       driver.execute_async_script(File.read(global_before_capture)) if global_before_capture
       end
       driver.execute_async_script(File.read(path_before_capture)) if path_before_capture
