@@ -6,11 +6,12 @@ language: ruby
 rvm:
 - 2.3.3
 before_install:
+  - rvm list
   - gem update
   - gem --version
 script:
-  - whereis google-chrome-stable
-  - whereis chromedriver
+  - google-chrome-stable --version
+  - chromedriver --version
   - bundle exec rspec
 notifications:
   email:
