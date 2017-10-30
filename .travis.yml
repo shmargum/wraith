@@ -7,9 +7,6 @@ addons:
 language: ruby
 rvm:
 - 2.4.1
-before_install:
-  - gem update
-  - gem --version
 script:
   - bundle exec rspec
 notifications:
