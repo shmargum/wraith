@@ -94,13 +94,18 @@ class Wraith::SaveImages
   def get_driver
     case meta.engine
     when "chrome"
+      puts "got 'chrome'"
       options = Selenium::WebDriver::Chrome::Options.new
+      puts "options created"
       options.add_argument('--disable-gpu')
       options.add_argument('--headless')
       options.add_argument('--device-scale-factor=1') # have to change cropping for 2x. also this is faster
       options.add_argument('--force-device-scale-factor')
       options.add_argument("--window-size=1200,1500") # resize later so we can reuse drivers
-      Selenium::WebDriver.for :chrome, options: options
+      puts "arguments added"
+      driver = Selenium::WebDriver.for :chrome, options: options
+      puts "driver created"
+      driver
     end
   end
 
