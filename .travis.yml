@@ -1,17 +1,16 @@
 sudo: false
 addons:
-  chrome: stable
+  apt:
+    packages:
+      - google-chrome-stable
 
 language: ruby
 rvm:
-- 2.3.3
+- 2.4.1
 before_install:
-  - rvm list
   - gem update
   - gem --version
 script:
-  - google-chrome-stable --version
-  - chromedriver --version
   - bundle exec rspec
 notifications:
   email:
