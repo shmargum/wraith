@@ -127,7 +127,10 @@ class Wraith::SaveImages
       new_file_name = file_name.sub('MULTI', screen_size)
       driver.manage.window.resize_to(width, height || 1500)
       driver.navigate.to url
+      if global_before_capture
+      puts File.read(global_before_capture)
       driver.execute_async_script(File.read(global_before_capture)) if global_before_capture
+      end
       driver.execute_async_script(File.read(path_before_capture)) if path_before_capture
       resize_to_fit_page(driver) unless height
       driver.save_screenshot(new_file_name)
