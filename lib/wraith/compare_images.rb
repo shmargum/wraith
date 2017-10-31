@@ -31,12 +31,14 @@ class Wraith::CompareImages
   end
 
   def compare_task(base, compare, output, info)
-    cmdline = "compare -dissimilarity-threshold 1 -fuzz #{wraith.fuzz} -metric AE -highlight-color #{wraith.highlight_color} #{base} #{compare.shellescape} #{output}"
+    cmdline = "compare -dissimilarity-threshold 1 -fuzz #{wraith.fuzz} -metric AE -highlight-color #{wraith.highlight_color} #{convert_to_absolute(base)} #{convert_to_absolute(compare.shellescape)} #{convert_to_absolute(output)}"
+    puts cmdline
     px_value = Open3.popen3(cmdline) { |_stdin, _stdout, stderr, _wait_thr| stderr.read }.to_f
     begin
       img_size = ImageSize.path(output).size.inject(:*)
       percentage(img_size, px_value, info)
     rescue
+      puts "rescuing"
       File.open(info, "w") { |file| file.write("invalid") } unless File.exist?(output)
     end
   end
