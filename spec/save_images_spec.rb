@@ -39,7 +39,7 @@ describe Wraith do
     end
     it "crops around a selector" do
       selector = "#orb-nav-more"
-      capture_image = saving_chrome.capture_image_selenium(1440, test_url1, test_image_chrome_selector, selector, false, false)
+      capture_image = saving_chrome.capture_image_selenium("1440x600", test_url1, test_image_chrome_selector, selector, false, false)
       image_size_chrome_selector = ImageSize.path(test_image_chrome_selector).size
       expect(image_size_chrome_selector[0]).to eq 673
       expect(image_size_chrome_selector[1]).to eq 40
