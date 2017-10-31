@@ -8,8 +8,6 @@ addons:
 language: ruby
 rvm:
 - 2.4.1
-before_install:
-  - sudo apt-get install imagemagick
 script:
   - compare --version
   - bundle exec rspec spec/before_capture_spec.rb

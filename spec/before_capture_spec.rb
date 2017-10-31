@@ -13,7 +13,7 @@ end
 def run_js_then_capture_chrome(config)
   saving = Wraith::SaveImages.new(config_chrome)
   generated_image = "shots_chrome/test/temporary_jsified_image.png"
-  saving.capture_image_selenium('320x320', 'http://www.bbc.com/afrique', generated_image, selector, config[:global_js], config[:path_js])
+  saving.capture_image_selenium('320x16', 'http://www.bbc.com/afrique', generated_image, selector, config[:global_js], config[:path_js])
   # puts "=== IMAGE 1==="
   # puts generated_image
   # puts `img2txt #{generated_image}`
