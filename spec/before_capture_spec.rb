@@ -18,9 +18,12 @@ def run_js_then_capture_chrome(config)
   puts generated_image
   puts `img2txt #{generated_image}`
   puts "=== IMAGE 2==="
+  puts config[:output_should_look_like]
+  puts `img2txt #{config[:output_should_look_like]}`
+  Wraith::CompareImages.new(config_chrome).compare_task(generated_image, config[:output_should_look_like], "shots/test/test_diff.png", "shots/test/test.txt")
+  puts "=== IMAGE DIFF==="
   puts `img2txt shots/test/test_diff.png`
   puts "============="
-  Wraith::CompareImages.new(config_chrome).compare_task(generated_image, config[:output_should_look_like], "shots/test/test_diff.png", "shots/test/test.txt")
   diff = File.open("shots/test/test.txt", "rb").read
   expect(diff).to eq "0.0"
 end
