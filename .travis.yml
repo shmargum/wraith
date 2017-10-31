@@ -3,11 +3,13 @@ addons:
   apt:
     packages:
       - google-chrome-stable
+      - caca-utils
 
 language: ruby
 rvm:
 - 2.4.1
 script:
+  - which img2txt
   - bundle exec rspec
 notifications:
   email:

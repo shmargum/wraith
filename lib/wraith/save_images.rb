@@ -127,14 +127,14 @@ class Wraith::SaveImages
       new_file_name = file_name.sub('MULTI', screen_size)
       driver.manage.window.resize_to(width, height || 1500)
       driver.navigate.to url
-      if global_before_capture
-          el = driver.find_element(:css, 'body')
-          puts el.attribute('innerHTML')
       driver.execute_async_script(File.read(global_before_capture)) if global_before_capture
-      end
       driver.execute_async_script(File.read(path_before_capture)) if path_before_capture
       resize_to_fit_page(driver) unless height
       driver.save_screenshot(new_file_name)
+      # a = `pwd`.sub("\n","")
+      # puts new_file_name
+      b = `img2txt #{new_file_name}`
+      puts b
       crop_selector(driver, selector, new_file_name) if selector && selector.length > 0
     end
     driver.quit
