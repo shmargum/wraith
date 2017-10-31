@@ -13,13 +13,15 @@ end
 def run_js_then_capture_chrome(config)
   saving = Wraith::SaveImages.new(config_chrome)
   generated_image = "shots_chrome/test/temporary_jsified_image.png"
-  saving.capture_image_selenium('320x16', 'http://www.bbc.com/afrique', generated_image, selector, config[:global_js], config[:path_js])
-  # puts "=== IMAGE 1==="
-  # puts generated_image
-  # puts `img2txt #{generated_image}`
-  # puts "=== IMAGE 2==="
-  # puts config[:output_should_look_like]
-  # puts `img2txt #{config[:output_should_look_like]}`
+  saving.capture_image_selenium('320x320', 'http://www.bbc.com/afrique', generated_image, selector, config[:global_js], config[:path_js])
+  puts "=== IMAGE 1==="
+  puts generated_image
+  puts `img2txt #{generated_image}`
+  puts `identify #{generated_image}`
+  puts "=== IMAGE 2==="
+  puts config[:output_should_look_like]
+  puts `img2txt #{config[:output_should_look_like]}`
+  puts `identify #{config[:output_should_look_like]}`
   Wraith::CompareImages.new(config_chrome).compare_task(generated_image, config[:output_should_look_like], "shots/test/test_diff.png", "shots/test/test.txt")
   puts "=== IMAGE DIFF==="
   puts `img2txt shots/test/test_diff.png`
